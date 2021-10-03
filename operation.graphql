@@ -1,0 +1,25 @@
+fragment PersonalLinesCustomer on PersonalLinesCustomer {
+  firstName
+  lastName
+}
+
+fragment BusinessLinesCustomer on BusinessLinesCustomer {
+  businessName
+  legalBusinessName
+}
+
+fragment Customer on Customer {
+  ... on PersonalLinesCustomer {
+    ...PersonalLinesCustomer
+  }
+
+  ... on BusinessLinesCustomer {
+    ...BusinessLinesCustomer
+  }
+}
+
+query getCustomer {
+  customer {
+    ...Customer
+  }
+}

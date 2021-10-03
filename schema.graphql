@@ -1,0 +1,43 @@
+schema {
+  query: Query
+}
+
+type Query {
+  customer: Customer!
+}
+
+interface Customer {
+  id: ID!
+  userId: ID
+  contactInfo: CustomerContactInfo
+}
+
+type BusinessLinesCustomer implements Customer {
+  id: ID!
+  userId: ID
+  contactInfo: CustomerContactInfo
+  businessName: String!
+  legalBusinessName: String
+}
+
+type PersonalLinesCustomer implements Customer {
+  id: ID!
+  userId: ID
+  contactInfo: CustomerContactInfo
+  firstName: String!
+  lastName: String!
+  priorAddress: CustomerContactAddress
+}
+
+type CustomerContactInfo {
+  email: String
+  phone: String
+  address: CustomerContactAddress
+}
+
+type CustomerContactAddress {
+  streetAddress: String!
+  unit: String
+  city: String!
+  postalCode: String!
+}

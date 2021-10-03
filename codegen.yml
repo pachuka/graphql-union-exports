@@ -1,0 +1,24 @@
+schema:
+  - schema.graphql
+generates:
+  schema.ts:
+    plugins:
+      - typescript
+  client.ts:
+    documents: ./**.graphql
+    preset: import-types
+    presetConfig:
+      typesPath: "./schema"
+    plugins:
+      - typescript-operations
+config:
+  scalars:
+    DateTime: Date
+  immutableTypes: true
+  inlineFragmentTypes: inline
+  namingConvention:
+    typeNames: change-case#pascalCase
+    enumValues: change-case#upperCase
+    transformUnderscore: true
+  avoidOptionals: false
+  dedupeFragments: true
